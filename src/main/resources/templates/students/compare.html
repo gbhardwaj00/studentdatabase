@@ -11,12 +11,15 @@
         <h1 class="mb-2">Student Comparison Chart</h1>
         <h6>Height of the student box corresponds to their height</h6>
         <h6>Width of the student box corresponds to their weight</h6>
-        <h6 class="mb-4">Color of the border corresponds to their hair color</h6>
-        <span class="container-fluid align-items-center m-1" th:each="student:${students}" th:style="'border: 3px solid '+${student.hairColor}+'; display: inline-block; height: '+${2 * student.weight}+'px; width: '+${2 * student.weight}+'px; overflow:hidden;'">
-            <span th:text="${student.name}"></span>
-            <br>
-            <span th:text="${student.gpa}"></span>
-        </span>
+        <h6>Color of the border corresponds to their hair color</h6>
+        <h6 style="color: red" class="mb-4">Click on a student box to update the student's information</h6>
+        <a th:each="student:${students}" th:href="@{/students/update/{id}(id=${student.sid})}">
+            <span class="container-fluid align-items-center m-1" th:style="'border: 3px solid '+${student.hairColor}+'; display: inline-block; height: '+${2 * student.weight}+'px; width: '+${2 * student.weight}+'px; overflow:hidden;'">
+                <span th:text="${student.name}"></span>
+                <br>
+                <span th:text="${student.gpa}"></span>
+            </span>
+        </a>
         <br>
         <a role="button" class="mt-5 btn btn-primary" th:href="@{/students/view}">Go back to Student database</a>
     </div> 
